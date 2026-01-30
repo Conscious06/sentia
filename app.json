@@ -1,29 +1,56 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
+    "name": "SENTIA",
+    "slug": "sentia",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0D0D0D"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sentia.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "SENTIA needs camera access to analyze places, art, and architecture around you.",
+        "NSLocationWhenInUseUsageDescription": "SENTIA uses your location to provide better cultural context about places you visit.",
+        "NSMicrophoneUsageDescription": "SENTIA uses audio for the audio guide feature."
+      },
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#0D0D0D"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.sentia.app",
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-camera",
+      "expo-location",
+      "expo-av",
+      "@react-native-async-storage/async-storage"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "sentia-cultural-explorer"
+      }
     }
   }
 }
