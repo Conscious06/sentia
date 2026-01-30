@@ -16,10 +16,10 @@ type HomeScreenProps = {
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <View style={styles.header}>
         <View style={styles.iconContainer}>
-          <Ionicons name="camera" size={48} color="#2C3E50" />
+          <Ionicons name="camera" size={42} color="#E6DCCF" />
         </View>
         <Text style={styles.title}>Cultural Lens</Text>
         <Text style={styles.subtitle}>
@@ -35,7 +35,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           onPress={() => navigation.navigate('Camera')}
         >
           <View style={styles.cardIconContainer}>
-            <Ionicons name="camera-outline" size={32} color="#fff" />
+            <Ionicons name="camera-outline" size={28} color="#EDE4D7" />
           </View>
           <View style={styles.cardContent}>
             <Text style={styles.cardTitle}>Take a Photo</Text>
@@ -43,7 +43,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
               Capture a building, monument, or artwork with your camera
             </Text>
           </View>
-          <Ionicons name="arrow-forward" size={24} color="#fff" />
+          <Ionicons name="arrow-forward" size={22} color="#EDE4D7" />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -51,7 +51,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           onPress={() => navigation.navigate('Gallery')}
         >
           <View style={styles.cardIconContainer}>
-            <Ionicons name="images-outline" size={32} color="#fff" />
+            <Ionicons name="images-outline" size={28} color="#EDE4D7" />
           </View>
           <View style={styles.cardContent}>
             <Text style={styles.cardTitle}>Choose from Gallery</Text>
@@ -59,12 +59,12 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
               Select an existing photo from your device
             </Text>
           </View>
-          <Ionicons name="arrow-forward" size={24} color="#fff" />
+          <Ionicons name="arrow-forward" size={22} color="#EDE4D7" />
         </TouchableOpacity>
 
         <View style={styles.infoSection}>
           <View style={styles.infoItem}>
-            <Ionicons name="information-circle-outline" size={24} color="#2C3E50" />
+            <Ionicons name="information-circle-outline" size={20} color="#C7BBAA" />
             <View style={styles.infoText}>
               <Text style={styles.infoTitle}>How it works</Text>
               <Text style={styles.infoDescription}>
@@ -75,7 +75,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           </View>
 
           <View style={styles.infoItem}>
-            <Ionicons name="shield-checkmark-outline" size={24} color="#2C3E50" />
+            <Ionicons name="shield-checkmark-outline" size={20} color="#C7BBAA" />
             <View style={styles.infoText}>
               <Text style={styles.infoTitle}>Reliable Information</Text>
               <Text style={styles.infoDescription}>
@@ -86,7 +86,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           </View>
 
           <View style={styles.infoItem}>
-            <Ionicons name="book-outline" size={24} color="#2C3E50" />
+            <Ionicons name="book-outline" size={20} color="#C7BBAA" />
             <View style={styles.infoText}>
               <Text style={styles.infoTitle}>Rich Context</Text>
               <Text style={styles.infoDescription}>
@@ -104,31 +104,36 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F6FA',
+    backgroundColor: '#0B0A09',
+  },
+  contentContainer: {
+    paddingBottom: 40,
   },
   header: {
-    backgroundColor: '#2C3E50',
+    backgroundColor: '#14110F',
     padding: 30,
     paddingTop: 60,
     alignItems: 'center',
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 32,
+    borderBottomRightRadius: 32,
   },
   iconContainer: {
-    backgroundColor: '#fff',
-    borderRadius: 50,
-    padding: 15,
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    borderRadius: 40,
+    padding: 14,
     marginBottom: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.12)',
   },
   title: {
     fontSize: 28,
-    fontWeight: '700',
-    color: '#fff',
+    fontWeight: '600',
+    color: '#F7F2E9',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 14,
-    color: '#BDC3C7',
+    color: 'rgba(255, 255, 255, 0.6)',
     textAlign: 'center',
     paddingHorizontal: 20,
   },
@@ -136,33 +141,33 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: '600',
-    color: '#2C3E50',
+    color: 'rgba(255, 255, 255, 0.6)',
     marginBottom: 20,
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
   },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 20,
-    borderRadius: 15,
+    borderRadius: 18,
     marginBottom: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.08)',
+    backgroundColor: 'rgba(33, 28, 23, 0.95)',
   },
   cameraCard: {
-    backgroundColor: '#E74C3C',
+    backgroundColor: 'rgba(62, 33, 30, 0.95)',
   },
   galleryCard: {
-    backgroundColor: '#3498DB',
+    backgroundColor: 'rgba(34, 47, 68, 0.95)',
   },
   cardIconContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
     borderRadius: 12,
-    padding: 12,
+    padding: 10,
     marginRight: 15,
   },
   cardContent: {
@@ -171,41 +176,38 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#fff',
+    color: '#F7F2E9',
     marginBottom: 4,
   },
   cardDescription: {
     fontSize: 13,
-    color: 'rgba(255, 255, 255, 0.9)',
+    color: 'rgba(255, 255, 255, 0.7)',
   },
   infoSection: {
     marginTop: 20,
   },
   infoItem: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(33, 28, 23, 0.95)',
     padding: 15,
-    borderRadius: 12,
+    borderRadius: 16,
     marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.08)',
   },
   infoText: {
     flex: 1,
     marginLeft: 12,
   },
   infoTitle: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '600',
-    color: '#2C3E50',
+    color: '#F7F2E9',
     marginBottom: 4,
   },
   infoDescription: {
     fontSize: 13,
-    color: '#7F8C8D',
+    color: 'rgba(255, 255, 255, 0.6)',
     lineHeight: 18,
   },
 });

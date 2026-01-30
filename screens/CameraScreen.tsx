@@ -19,7 +19,7 @@ export default function CameraScreen({ navigation }: CameraScreenProps) {
   if (!permission) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#2C3E50" />
+        <ActivityIndicator size="large" color="#C7BBAA" />
       </View>
     );
   }
@@ -28,7 +28,7 @@ export default function CameraScreen({ navigation }: CameraScreenProps) {
     return (
       <View style={styles.container}>
         <View style={styles.permissionContainer}>
-          <Ionicons name="camera-outline" size={64} color="#2C3E50" />
+          <Ionicons name="camera-outline" size={60} color="#C7BBAA" />
           <Text style={styles.permissionTitle}>Camera Permission Needed</Text>
           <Text style={styles.permissionText}>
             Cultural Lens needs access to your camera to analyze cultural sites and landmarks.
@@ -145,29 +145,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 30,
-    backgroundColor: '#F5F6FA',
+    backgroundColor: '#0B0A09',
   },
   permissionTitle: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#2C3E50',
+    color: '#F7F2E9',
     marginTop: 20,
     marginBottom: 10,
   },
   permissionText: {
     fontSize: 15,
-    color: '#7F8C8D',
+    color: 'rgba(255, 255, 255, 0.6)',
     textAlign: 'center',
     marginBottom: 30,
   },
   permissionButton: {
-    backgroundColor: '#2C3E50',
+    backgroundColor: 'rgba(33, 28, 23, 0.95)',
     paddingHorizontal: 30,
     paddingVertical: 15,
     borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
   },
   permissionButtonText: {
-    color: '#fff',
+    color: '#F7F2E9',
     fontSize: 16,
     fontWeight: '600',
   },
@@ -224,7 +226,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: '#fff',
     borderWidth: 3,
-    borderColor: '#2C3E50',
+    borderColor: '#C7BBAA',
   },
   placeholder: {
     width: 50,

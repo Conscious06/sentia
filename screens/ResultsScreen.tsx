@@ -55,15 +55,15 @@ export default function ResultsScreen({ navigation, route }: ResultsScreenProps)
 
   const getConfidenceColor = (confidence: string) => {
     const conf = confidence.toLowerCase();
-    if (conf.includes('high') || conf.includes('certain')) return '#27AE60';
-    if (conf.includes('medium') || conf.includes('likely')) return '#F39C12';
-    return '#E74C3C';
+    if (conf.includes('high') || conf.includes('certain')) return 'rgba(70, 130, 95, 0.6)';
+    if (conf.includes('medium') || conf.includes('likely')) return 'rgba(130, 115, 95, 0.6)';
+    return 'rgba(140, 70, 70, 0.6)';
   };
 
   if (isAnalyzing) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#2C3E50" />
+        <ActivityIndicator size="large" color="#C7BBAA" />
         <Text style={styles.loadingText}>Analyzing your image...</Text>
         <Text style={styles.loadingSubtext}>
           Our AI is examining the cultural and historical elements
@@ -86,14 +86,12 @@ export default function ResultsScreen({ navigation, route }: ResultsScreenProps)
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <Image source={{ uri: imageUrl }} style={styles.image} />
-
-      <View style={styles.content}>
-        {/* Title Section */}
-        <View style={styles.headerSection}>
-          <View style={styles.titleRow}>
-            <Text style={styles.title}>{analysis.title}</Text>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      <View style={styles.hero}>
+        <Image source={{ uri: imageUrl }} style={styles.image} />
+        <View style={styles.heroOverlay} />
+        <View style={styles.heroContent}>
+          <View style={styles.heroTopRow}>
             <View
               style={[
                 styles.confidenceBadge,
@@ -103,14 +101,18 @@ export default function ResultsScreen({ navigation, route }: ResultsScreenProps)
               <Text style={styles.confidenceText}>{analysis.confidence}</Text>
             </View>
           </View>
+          <Text style={styles.title}>{analysis.title}</Text>
           <Text style={styles.oneLiner}>{analysis.one_liner}</Text>
         </View>
+      </View>
+
+      <View style={styles.content}>
 
         {/* Overview Section */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Ionicons name="book-outline" size={24} color="#2C3E50" />
-            <Text style={styles.sectionTitle}>Overview</Text>
+            <Ionicons name="book-outline" size={20} color="#C7BBAA" />
+            <Text style={styles.sectionTitle}>Context</Text>
           </View>
           <Text style={styles.sectionText}>{analysis.overview}</Text>
         </View>
@@ -119,55 +121,55 @@ export default function ResultsScreen({ navigation, route }: ResultsScreenProps)
         {analysis.history && (
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="hourglass-outline" size={24} color="#2C3E50" />
-              <Text style={styles.sectionTitle}>History</Text>
-            </View>
-            <Text style={styles.sectionText}>{analysis.history}</Text>
+            <Ionicons name="hourglass-outline" size={20} color="#C7BBAA" />
+            <Text style={styles.sectionTitle}>History</Text>
           </View>
+          <Text style={styles.sectionText}>{analysis.history}</Text>
+        </View>
         )}
 
         {/* Architecture/Art Section */}
         {analysis.architecture_or_art && (
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="business-outline" size={24} color="#2C3E50" />
-              <Text style={styles.sectionTitle}>Architecture & Art</Text>
-            </View>
-            <Text style={styles.sectionText}>{analysis.architecture_or_art}</Text>
+            <Ionicons name="business-outline" size={20} color="#C7BBAA" />
+            <Text style={styles.sectionTitle}>Architecture & Art</Text>
           </View>
+          <Text style={styles.sectionText}>{analysis.architecture_or_art}</Text>
+        </View>
         )}
 
         {/* Fun Fact Section */}
         {analysis.fun_fact && (
           <View style={[styles.section, styles.funFactSection]}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="sparkles-outline" size={24} color="#F39C12" />
-              <Text style={[styles.sectionTitle, styles.funFactTitle]}>Fun Fact</Text>
-            </View>
-            <Text style={styles.sectionText}>{analysis.fun_fact}</Text>
+            <Ionicons name="sparkles-outline" size={20} color="#E6C16E" />
+            <Text style={[styles.sectionTitle, styles.funFactTitle]}>Suggestion</Text>
           </View>
+          <Text style={styles.sectionText}>{analysis.fun_fact}</Text>
+        </View>
         )}
 
         {/* Visitor Tip Section */}
         {analysis.visitor_tip && (
           <View style={[styles.section, styles.tipSection]}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="information-circle-outline" size={24} color="#3498DB" />
-              <Text style={styles.sectionTitle}>Visitor Tip</Text>
-            </View>
-            <Text style={styles.sectionText}>{analysis.visitor_tip}</Text>
+            <Ionicons name="information-circle-outline" size={20} color="#7FA5C7" />
+            <Text style={styles.sectionTitle}>Visitor Tip</Text>
           </View>
+          <Text style={styles.sectionText}>{analysis.visitor_tip}</Text>
+        </View>
         )}
 
         {/* Audio Summary Section */}
         {analysis.audio_ready_summary && (
           <View style={[styles.section, styles.audioSection]}>
             <View style={styles.sectionHeader}>
-              <Ionicons name="volume-high-outline" size={24} color="#9B59B6" />
-              <Text style={styles.sectionTitle}>Audio Summary</Text>
-            </View>
-            <Text style={styles.audioText}>{analysis.audio_ready_summary}</Text>
+            <Ionicons name="volume-high-outline" size={20} color="#B296D9" />
+            <Text style={styles.sectionTitle}>Audio Summary</Text>
           </View>
+          <Text style={styles.audioText}>{analysis.audio_ready_summary}</Text>
+        </View>
         )}
 
         {/* Action Buttons */}
@@ -176,7 +178,7 @@ export default function ResultsScreen({ navigation, route }: ResultsScreenProps)
             style={styles.actionButton}
             onPress={() => navigation.goBack()}
           >
-            <Ionicons name="camera-outline" size={20} color="#2C3E50" />
+            <Ionicons name="camera-outline" size={20} color="#E8E1D5" />
             <Text style={styles.actionButtonText}>New Analysis</Text>
           </TouchableOpacity>
         </View>
@@ -188,105 +190,109 @@ export default function ResultsScreen({ navigation, route }: ResultsScreenProps)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F6FA',
+    backgroundColor: '#0B0A09',
+  },
+  contentContainer: {
+    paddingBottom: 40,
+  },
+  hero: {
+    position: 'relative',
   },
   image: {
     width: '100%',
-    height: 250,
-    backgroundColor: '#2C3E50',
+    height: 360,
+    backgroundColor: '#1F1B18',
   },
-  content: {
-    padding: 20,
+  heroOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
   },
-  headerSection: {
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 15,
-    marginBottom: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+  heroContent: {
+    position: 'absolute',
+    left: 20,
+    right: 20,
+    bottom: 30,
   },
-  titleRow: {
+  heroTopRow: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 10,
+    justifyContent: 'flex-end',
+    marginBottom: 16,
   },
   title: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#2C3E50',
-    flex: 1,
-    marginRight: 10,
+    fontSize: 28,
+    fontWeight: '600',
+    color: '#F7F2E9',
+    marginBottom: 10,
   },
   confidenceBadge: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 20,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.2)',
   },
   confidenceText: {
-    color: '#fff',
+    color: '#F7F2E9',
     fontSize: 12,
     fontWeight: '600',
   },
   oneLiner: {
     fontSize: 14,
-    color: '#7F8C8D',
+    color: 'rgba(255, 255, 255, 0.75)',
     lineHeight: 20,
+    maxWidth: 320,
+  },
+  content: {
+    padding: 20,
   },
   section: {
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(33, 28, 23, 0.95)',
     padding: 18,
-    borderRadius: 12,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+    borderRadius: 18,
+    marginBottom: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.06)',
   },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
-    gap: 10,
+    marginBottom: 10,
+    gap: 8,
   },
   sectionTitle: {
-    fontSize: 17,
+    fontSize: 13,
     fontWeight: '600',
-    color: '#2C3E50',
+    color: 'rgba(255, 255, 255, 0.6)',
+    letterSpacing: 1.2,
+    textTransform: 'uppercase',
   },
   sectionText: {
     fontSize: 14,
-    color: '#34495E',
+    color: '#F0E6DA',
     lineHeight: 22,
   },
   funFactSection: {
-    backgroundColor: '#FEF9E7',
-    borderLeftWidth: 4,
-    borderLeftColor: '#F39C12',
+    backgroundColor: 'rgba(42, 34, 26, 0.95)',
+    borderLeftWidth: 3,
+    borderLeftColor: '#E6C16E',
   },
   funFactTitle: {
-    color: '#F39C12',
+    color: '#E6C16E',
   },
   tipSection: {
-    backgroundColor: '#EBF5FB',
-    borderLeftWidth: 4,
-    borderLeftColor: '#3498DB',
+    backgroundColor: 'rgba(33, 35, 38, 0.95)',
+    borderLeftWidth: 3,
+    borderLeftColor: '#7FA5C7',
   },
   audioSection: {
-    backgroundColor: '#F5EEF8',
-    borderLeftWidth: 4,
-    borderLeftColor: '#9B59B6',
+    backgroundColor: 'rgba(40, 30, 45, 0.95)',
+    borderLeftWidth: 3,
+    borderLeftColor: '#B296D9',
   },
   audioText: {
     fontSize: 14,
-    color: '#5B2C6F',
+    color: '#E7D9F6',
     lineHeight: 22,
-    fontStyle: 'italic',
   },
   actionButtons: {
     flexDirection: 'row',
@@ -299,15 +305,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(33, 28, 23, 0.95)',
     paddingVertical: 14,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: '#2C3E50',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
     gap: 8,
   },
   actionButtonText: {
-    color: '#2C3E50',
+    color: '#E8E1D5',
     fontSize: 15,
     fontWeight: '600',
   },
@@ -316,17 +322,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 30,
-    backgroundColor: '#F5F6FA',
+    backgroundColor: '#0B0A09',
   },
   loadingText: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#2C3E50',
+    color: '#F7F2E9',
     marginTop: 20,
   },
   loadingSubtext: {
     fontSize: 14,
-    color: '#7F8C8D',
+    color: 'rgba(255, 255, 255, 0.6)',
     textAlign: 'center',
     marginTop: 8,
   },
@@ -335,29 +341,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 30,
-    backgroundColor: '#F5F6FA',
+    backgroundColor: '#0B0A09',
   },
   errorTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#2C3E50',
+    color: '#F7F2E9',
     marginTop: 20,
     marginBottom: 10,
   },
   errorText: {
     fontSize: 14,
-    color: '#7F8C8D',
+    color: 'rgba(255, 255, 255, 0.6)',
     textAlign: 'center',
     marginBottom: 30,
   },
   retryButton: {
-    backgroundColor: '#2C3E50',
+    backgroundColor: '#1E1A17',
     paddingHorizontal: 30,
     paddingVertical: 14,
     borderRadius: 12,
   },
   retryButtonText: {
-    color: '#fff',
+    color: '#F7F2E9',
     fontSize: 16,
     fontWeight: '600',
   },
