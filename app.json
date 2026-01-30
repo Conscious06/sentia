@@ -44,8 +44,7 @@
     "plugins": [
       "expo-camera",
       "expo-location",
-      "expo-av",
-      "@react-native-async-storage/async-storage"
+      "expo-av"
     ],
     "extra": {
       "eas": {
