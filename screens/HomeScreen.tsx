@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  ImageBackground,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -17,85 +18,118 @@ type HomeScreenProps = {
 export default function HomeScreen({ navigation }: HomeScreenProps) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <View style={styles.header}>
-        <View style={styles.iconContainer}>
-          <Ionicons name="camera" size={42} color="#E6DCCF" />
+      <View style={styles.hero}>
+        <View style={styles.glowCircle} />
+        <View style={styles.brandRow}>
+          <View style={styles.brandIcon}>
+            <Ionicons name="eye-outline" size={18} color="#93A6C3" />
+          </View>
+          <Text style={styles.brandLabel}>SENTIA</Text>
         </View>
-        <Text style={styles.title}>Cultural Lens</Text>
-        <Text style={styles.subtitle}>
-          Discover the stories behind landmarks, artworks, and historical sites
+        <Text style={styles.heroTitle}>See the{'\n'}meaning</Text>
+        <Text style={styles.heroSubtitle}>
+          Point your camera at any place, building, or artwork. I&apos;ll tell you what
+          you&apos;re seeing — and why it matters.
         </Text>
       </View>
 
-      <View style={styles.content}>
-        <Text style={styles.sectionTitle}>What would you like to explore?</Text>
-
-        <TouchableOpacity
-          style={[styles.card, styles.cameraCard]}
-          onPress={() => navigation.navigate('Camera')}
-        >
-          <View style={styles.cardIconContainer}>
-            <Ionicons name="camera-outline" size={28} color="#EDE4D7" />
+      <View style={styles.cardShell}>
+        <View style={styles.cardHeader}>
+          <View>
+            <Text style={styles.cardTitle}>Begin perceiving</Text>
+            <Text style={styles.cardSubtitle}>Open camera to explore</Text>
           </View>
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>Take a Photo</Text>
-            <Text style={styles.cardDescription}>
-              Capture a building, monument, or artwork with your camera
-            </Text>
-          </View>
-          <Ionicons name="arrow-forward" size={22} color="#EDE4D7" />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.card, styles.galleryCard]}
-          onPress={() => navigation.navigate('Gallery')}
-        >
-          <View style={styles.cardIconContainer}>
-            <Ionicons name="images-outline" size={28} color="#EDE4D7" />
-          </View>
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>Choose from Gallery</Text>
-            <Text style={styles.cardDescription}>
-              Select an existing photo from your device
-            </Text>
-          </View>
-          <Ionicons name="arrow-forward" size={22} color="#EDE4D7" />
-        </TouchableOpacity>
-
-        <View style={styles.infoSection}>
-          <View style={styles.infoItem}>
-            <Ionicons name="information-circle-outline" size={20} color="#C7BBAA" />
-            <View style={styles.infoText}>
-              <Text style={styles.infoTitle}>How it works</Text>
-              <Text style={styles.infoDescription}>
-                Simply capture or select an image of any cultural site, landmark, or artwork.
-                Our AI will analyze it and provide detailed historical and cultural context.
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.infoItem}>
-            <Ionicons name="shield-checkmark-outline" size={20} color="#C7BBAA" />
-            <View style={styles.infoText}>
-              <Text style={styles.infoTitle}>Reliable Information</Text>
-              <Text style={styles.infoDescription}>
-                We prioritize accuracy. When uncertain, we clearly indicate confidence levels
-                and probability rather than guessing.
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.infoItem}>
-            <Ionicons name="book-outline" size={20} color="#C7BBAA" />
-            <View style={styles.infoText}>
-              <Text style={styles.infoTitle}>Rich Context</Text>
-              <Text style={styles.infoDescription}>
-                Get historical background, architectural details, fun facts, and visitor tips
-                all in one place.
-              </Text>
-            </View>
-          </View>
+          <TouchableOpacity
+            style={styles.cardAction}
+            onPress={() => navigation.navigate('Camera')}
+          >
+            <Ionicons name="eye-outline" size={20} color="#8DA4C5" />
+          </TouchableOpacity>
         </View>
+        <View style={styles.pillRow}>
+          {['Architecture', 'Art', 'Culture', 'History'].map((label) => (
+            <View key={label} style={styles.pill}>
+              <Text style={styles.pillText}>{label}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+
+      <View style={styles.sectionRow}>
+        <View style={styles.sectionTitleRow}>
+          <Ionicons name="time-outline" size={16} color="#7E7469" />
+          <Text style={styles.sectionTitle}>Recent</Text>
+        </View>
+        <Text style={styles.sectionMeta}>2 discoveries</Text>
+      </View>
+
+      <View style={styles.recentRow}>
+        <ImageBackground
+          style={styles.recentCard}
+          imageStyle={styles.recentImage}
+          source={{
+            uri: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80',
+          }}
+        >
+          <View style={styles.recentBadge}>
+            <Ionicons name="trash-outline" size={14} color="#C8BBAA" />
+          </View>
+          <View style={styles.recentOverlay}>
+            <Text style={styles.recentTitle}>Self-Portrait with Bandaged Ear</Text>
+            <Text style={styles.recentDescription}>
+              A key modern self-portrait that embodies Vincent van Gogh&apos;s emotional
+              intensity.
+            </Text>
+            <Text style={styles.recentMeta}>Today</Text>
+          </View>
+        </ImageBackground>
+        <ImageBackground
+          style={styles.recentCard}
+          imageStyle={styles.recentImage}
+          source={{
+            uri: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80',
+          }}
+        >
+          <View style={styles.recentOverlay}>
+            <Text style={styles.recentTitle}>Dolmabahçe area</Text>
+            <Text style={styles.recentDescription}>
+              This looks like the edge of the imperial palace grounds in Istanbul.
+            </Text>
+            <Text style={styles.recentMeta}>Today</Text>
+          </View>
+        </ImageBackground>
+      </View>
+
+      <TouchableOpacity
+        style={styles.primaryButton}
+        onPress={() => navigation.navigate('Camera')}
+      >
+        <Ionicons name="eye-outline" size={18} color="#9DB2D1" />
+        <Text style={styles.primaryButtonText}>Open Camera</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.sectionLabel}>How Sentia perceives</Text>
+      <View style={styles.infoList}>
+        {[
+          {
+            icon: 'eye-outline',
+            text: 'Visual context and composition analysis',
+          },
+          {
+            icon: 'location-outline',
+            text: 'Location-aware cultural understanding',
+          },
+          {
+            icon: 'volume-medium-outline',
+            text: 'Spoken narratives for immersive discovery',
+          },
+        ].map((item) => (
+          <View key={item.text} style={styles.infoRow}>
+            <Ionicons name={item.icon as keyof typeof Ionicons.glyphMap} size={18} color="#7E7469" />
+            <Text style={styles.infoText}>{item.text}</Text>
+            <Ionicons name="chevron-forward" size={18} color="#5E564D" />
+          </View>
+        ))}
       </View>
     </ScrollView>
   );
@@ -107,107 +141,225 @@ const styles = StyleSheet.create({
     backgroundColor: '#0B0A09',
   },
   contentContainer: {
-    paddingBottom: 40,
+    paddingBottom: 48,
   },
-  header: {
-    backgroundColor: '#14110F',
-    padding: 30,
-    paddingTop: 60,
-    alignItems: 'center',
-    borderBottomLeftRadius: 32,
-    borderBottomRightRadius: 32,
+  hero: {
+    paddingHorizontal: 24,
+    paddingTop: 48,
+    paddingBottom: 24,
   },
-  iconContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    borderRadius: 40,
-    padding: 14,
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.12)',
+  glowCircle: {
+    position: 'absolute',
+    top: -120,
+    right: -90,
+    width: 320,
+    height: 320,
+    borderRadius: 160,
+    backgroundColor: '#1A2635',
+    opacity: 0.65,
   },
-  title: {
-    fontSize: 28,
-    fontWeight: '600',
-    color: '#F7F2E9',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 14,
-    color: 'rgba(255, 255, 255, 0.6)',
-    textAlign: 'center',
-    paddingHorizontal: 20,
-  },
-  content: {
-    padding: 20,
-  },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: 'rgba(255, 255, 255, 0.6)',
-    marginBottom: 20,
-    textTransform: 'uppercase',
-    letterSpacing: 1.2,
-  },
-  card: {
+  brandRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 22,
+  },
+  brandIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(39, 54, 78, 0.8)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+  },
+  brandLabel: {
+    color: '#9E9A93',
+    letterSpacing: 4,
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  heroTitle: {
+    fontSize: 46,
+    fontWeight: '600',
+    color: '#F4EFE6',
+    lineHeight: 54,
+    marginBottom: 16,
+  },
+  heroSubtitle: {
+    fontSize: 15,
+    color: 'rgba(244, 239, 230, 0.6)',
+    lineHeight: 22,
+  },
+  cardShell: {
+    marginHorizontal: 20,
     padding: 20,
-    borderRadius: 18,
-    marginBottom: 15,
+    borderRadius: 22,
+    backgroundColor: 'rgba(32, 28, 24, 0.92)',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.08)',
-    backgroundColor: 'rgba(33, 28, 23, 0.95)',
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 8 },
   },
-  cameraCard: {
-    backgroundColor: 'rgba(62, 33, 30, 0.95)',
-  },
-  galleryCard: {
-    backgroundColor: 'rgba(34, 47, 68, 0.95)',
-  },
-  cardIconContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    borderRadius: 12,
-    padding: 10,
-    marginRight: 15,
-  },
-  cardContent: {
-    flex: 1,
+  cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   cardTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '600',
-    color: '#F7F2E9',
-    marginBottom: 4,
+    color: '#F5EFE5',
   },
-  cardDescription: {
+  cardSubtitle: {
+    marginTop: 4,
     fontSize: 13,
-    color: 'rgba(255, 255, 255, 0.7)',
+    color: 'rgba(244, 239, 230, 0.6)',
   },
-  infoSection: {
-    marginTop: 20,
-  },
-  infoItem: {
-    flexDirection: 'row',
-    backgroundColor: 'rgba(33, 28, 23, 0.95)',
-    padding: 15,
-    borderRadius: 16,
-    marginBottom: 12,
+  cardAction: {
+    width: 46,
+    height: 46,
+    borderRadius: 23,
+    backgroundColor: 'rgba(38, 54, 80, 0.85)',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.08)',
+    borderColor: 'rgba(112, 135, 163, 0.4)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pillRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 16,
+    gap: 8,
+  },
+  pill: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 999,
+    backgroundColor: 'rgba(58, 49, 41, 0.9)',
+    borderWidth: 1,
+    borderColor: 'rgba(116, 99, 86, 0.4)',
+  },
+  pillText: {
+    fontSize: 12,
+    color: '#B8ACA0',
+  },
+  sectionRow: {
+    marginTop: 26,
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  sectionTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  sectionTitle: {
+    fontSize: 12,
+    fontWeight: '600',
+    letterSpacing: 3,
+    color: '#7E7469',
+    marginLeft: 8,
+    textTransform: 'uppercase',
+  },
+  sectionMeta: {
+    fontSize: 12,
+    color: '#5E564D',
+  },
+  recentRow: {
+    flexDirection: 'row',
+    gap: 14,
+    marginTop: 16,
+    marginHorizontal: 20,
+  },
+  recentCard: {
+    flex: 1,
+    height: 200,
+    borderRadius: 20,
+    overflow: 'hidden',
+    justifyContent: 'flex-end',
+  },
+  recentImage: {
+    borderRadius: 20,
+  },
+  recentBadge: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(20, 18, 16, 0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  recentOverlay: {
+    padding: 14,
+    backgroundColor: 'rgba(12, 10, 9, 0.7)',
+  },
+  recentTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#F6F0E7',
+  },
+  recentDescription: {
+    marginTop: 6,
+    fontSize: 11,
+    color: 'rgba(246, 240, 231, 0.6)',
+  },
+  recentMeta: {
+    marginTop: 8,
+    fontSize: 11,
+    color: '#8C8074',
+  },
+  primaryButton: {
+    marginTop: 22,
+    marginHorizontal: 20,
+    paddingVertical: 14,
+    borderRadius: 26,
+    backgroundColor: 'rgba(41, 58, 82, 0.9)',
+    borderWidth: 1,
+    borderColor: 'rgba(123, 147, 179, 0.4)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  primaryButtonText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#CFE0F5',
+  },
+  sectionLabel: {
+    marginTop: 24,
+    marginHorizontal: 20,
+    fontSize: 12,
+    letterSpacing: 3,
+    textTransform: 'uppercase',
+    color: '#5E564D',
+  },
+  infoList: {
+    marginTop: 14,
+    marginHorizontal: 20,
+    gap: 12,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 18,
+    backgroundColor: 'rgba(26, 23, 20, 0.9)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.06)',
   },
   infoText: {
     flex: 1,
-    marginLeft: 12,
-  },
-  infoTitle: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#F7F2E9',
-    marginBottom: 4,
-  },
-  infoDescription: {
+    marginHorizontal: 12,
     fontSize: 13,
-    color: 'rgba(255, 255, 255, 0.6)',
-    lineHeight: 18,
+    color: 'rgba(216, 208, 196, 0.7)',
   },
 });
