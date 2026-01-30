@@ -24,7 +24,7 @@ export default function GalleryScreen({ navigation }: GalleryScreenProps) {
       setIsLoading(true);
 
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ['images'],
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         quality: 0.8,
         base64: false,
